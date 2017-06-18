@@ -324,14 +324,14 @@ header("location: ../index.php");
 
 
 			} else {
-				$sql1="SELECT users.idusers from users INNER JOIN devices on users.idgroup=devices.t_reg where t_reg=".$_POST['groupdid']." AND idgroup=".$_SESSION['idgroup'];
+				$sql1="SELECT users.idusers from users INNER JOIN devices on users.idgroup=devices.t_reg where t_reg=".mysqli_real_escape_string($db,$_POST['groupdid'])." AND idgroup=".$_SESSION['idgroup'];
 				$result1 = mysqli_query($db,$sql1);
 	      			if (mysqli_num_rows($result1) == 0) {
 					echo '<div class="alert alert-warning alert-dismissable fade in">';
 					echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
 					echo '<strong>Not a group member!</strong> Contact your administrator.</div>';
 				} else {
-					$sql2 = "SELECT iddevices,name,description,image,status,t_reg from devices where t_reg=".$_POST['groupdid'];
+					$sql2 = "SELECT iddevices,name,description,image,status,t_reg from devices where t_reg=".mysqli_real_escape_string($db,$_POST['groupdid']);
 		      			$result2 = mysqli_query($db,$sql2);
 		      				if (mysqli_num_rows($result2) > 0) {
 						// output data of each row

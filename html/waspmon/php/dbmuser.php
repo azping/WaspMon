@@ -7,12 +7,12 @@ if (!$db) {
 		
 	}
 	else {	
-		$idusersm=intval($_POST['idusersm']);
-		$usernamem=($_POST['usernamem']);
-		$passwordm=($_POST['passwordm']);
-		$namem=($_POST['namem']);
-		$typem=($_POST['typem']);
-		$idgroupm=($_POST['idgroupm']);
+		$idusersm=intval(mysqli_real_escape_string($db,$_POST['idusersm']));
+		$usernamem=(mysqli_real_escape_string($db,$_POST['usernamem']));
+		$passwordm=(mysqli_real_escape_string($db,$_POST['passwordm']));
+		$namem=(mysqli_real_escape_string($db,$_POST['namem']));
+		$typem=(mysqli_real_escape_string($db,$_POST['typem']));
+		$idgroupm=(mysqli_real_escape_string($db,$_POST['idgroupm']));
 		if ($_POST["opusersm"]=="Update") {
 			if ($_POST["passwordm"]=="") {
 				$sql = "UPDATE users SET username='$usernamem', name='$namem', type='$typem', idgroup='$idgroupm' where idusers=$idusersm";

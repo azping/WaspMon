@@ -7,12 +7,12 @@ if (!$db) {
 		
 	}
 	else {	
-		$iddevm=intval($_POST['iddevm']);
-		$dnamem=($_POST['dnamem']);
-		$ddescm=($_POST['ddescm']);
-		$dimgm=($_POST['dimgm']);
-		$dstatusm=($_POST['dstatusm']);
-		$dt_regm=($_POST['dt_regm']);
+		$iddevm=intval(mysqli_real_escape_string($db,$_POST['iddevm']));
+		$dnamem=(mysqli_real_escape_string($db,$_POST['dnamem']));
+		$ddescm=(mysqli_real_escape_string($db,$_POST['ddescm']));
+		$dimgm=(mysqli_real_escape_string($db,$_POST['dimgm']));
+		$dstatusm=(mysqli_real_escape_string($db,$_POST['dstatusm']));
+		$dt_regm=(mysqli_real_escape_string($db,$_POST['dt_regm']));
 		if ($_POST["opdevm"]=="Update") {
 			$sql = "UPDATE devices SET name='$dnamem', description='$ddescm', image='$dimgm', status='$dstatusm', t_reg=$dt_regm where iddevices='$iddevm'";
 		} else {
