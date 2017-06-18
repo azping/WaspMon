@@ -1,9 +1,10 @@
 # WaspMon
-WaspMon is an open-source web application for processing, logging and visualising sensor data. WaspMon is being developed to work with Libelium's Waspmote.
+WaspMon is an open-source web application for processing, logging, visualising sensor and house energy consumption.
+WaspMon is being developed to work with Libelium's Waspmote.
 
 Directory tree is as follows:
 
-/html     - Web application files
-/sketch   - Sketch file to be uploaded to the waspmotes
-/sniffer  - The sniffer application (linux) USB to MariaDB
-/SQL      - MariaDB sql dump file
+/SQL      - MySQL/MariaDB sql dump file;
+/html     - Web application files;
+/sketch   - Sketch file to be uploaded to the waspmotes;
+/sniffer  - The sniffer application (linux) - USB to MariaDB.
