@@ -3,7 +3,7 @@ WaspMon is an open-source web application for processing, logging and visualisin
 
 Directory tree is as follows:
 
-/Sketch   - Sketch file to be uploaded to the waspmotes
 /html     - Web application files
+/sketch   - Sketch file to be uploaded to the waspmotes
 /sniffer  - The sniffer application (linux) USB to MariaDB
 /SQL      - MariaDB sql dump file
