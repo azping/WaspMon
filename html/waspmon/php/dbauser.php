@@ -15,7 +15,7 @@ if (!$db) {
 	else {
 		$sql = "INSERT INTO users values (NULL,'".$_POST["username"]."','".$_POST["password"]."','".$_POST["name"]."','".$_POST["type"]."')";
       		if (mysqli_query($db, $sql)) {
-    		echo "New record created successfully";
+    		header("location: ./users.php");
 		} else {
     		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 		}

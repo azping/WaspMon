@@ -135,22 +135,16 @@ header("location: ../index.php");
           </div>
 -->
 <div class="col-sm-offset-1 col-sm-10 col-sm-offset-1 col-md-offset-2 col-md-8 col-md-offset-2 main">
-          <h3 class="sub-header">User</h3>
+          <h3 class="sub-header">Users</h3>
 		
-			<div class="col-xs-0 col-sm-0 col-md-0 placeholder">
-			
-			</div>
-			<div class="col-xs-offset-0 col-sm-offset-9 col-md-offset-10 placeholder">
-      			<button class="btn btn-lg btn-primary btn-block" data-toggle="modal" data-target="#createU">+Create</button>
-    			</div>
 			<div id="createU" class="modal fade" role="dialog">
 			<div class="modal-dialog">
 
 			<!-- Modal content: Create USER-->
 			<div class="modal-content">
-					<div class="modal-header" style="padding:35px 50px; background-color: #8bdddc; color:white !important; text-align: center; font-size: 30px;">
+					<div class="modal-header alert-info" style="padding:35px 50px;  color:black !important; text-align: center; font-size: 30px;">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h2><span class="glyphicon glyphicon-user"></span> Create User</h2>
+						<h2><span class="glyphicon glyphicon-user"></span> New user</h2>
 					</div>
 					<div class="modal-body">
 
@@ -187,7 +181,7 @@ header("location: ../index.php");
 			</div>	
 			</div>		
 			
-			<!-- Modal content: DELETE USER-->
+			<!-- Modal content: Modify USER-->
 			<div class="modal fade" id="modifyU" role="dialog">
     			<div class="modal-dialog">
 			<div class="modal-content">
@@ -267,8 +261,12 @@ header("location: ../index.php");
    			<button type="button" id="Update" class="btn btn-primary disabled">Update</button>
 			<button type="button" id="Delete" class="open-deletedial btn btn-primary disabled" data-toggle="modal" data-target="#deleteU" data-field1="teste">Delete</button>
 		</div>    -->
-    
-    
+		
+		<div class="col-xs-12 col-sm-8 col-md-10 placeholder">
+		</div>
+		<div class="col-xs-0 col-sm-4 col-md-2 placeholder">
+      		<button class="btn btn-lg btn-primary btn-block" data-toggle="modal" data-target="#createU">New</button>
+    		</div> 
   </div>
 </div>
 		

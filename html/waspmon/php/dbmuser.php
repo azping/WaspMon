@@ -26,12 +26,11 @@ if (!$db) {
 			}
 		} else {
 		if ($_POST["opusersm"]=="Delete") {
-			$idusersm=intval($_POST['idusersm']);
 			$sql = "DELETE FROM users where idusers=$idusersm";
 			}
 		}
       		if (mysqli_query($db, $sql)) {
-    			echo "Successfully modified or deleted record";
+    			header("location: ./users.php");
 		} else {
     			echo "Error: " . $sql . "<br>" . mysqli_error($db);
 		}

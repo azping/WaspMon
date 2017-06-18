@@ -23,7 +23,7 @@ var nVal=0;
 
 
 		for (let n=1;n<=nVal; n++) {
-			//Get wasp names
+			//Get wasp names - let wait for get
 			
 			$.get('./php/db_wdetails.php', { iVal:n } ,function (waspid) {
 				//Get battery status;
