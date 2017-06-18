@@ -8,7 +8,7 @@ if (!$db) {
 		
 	}
 	else {
-		$sql = "INSERT INTO devices values (NULL,'".$_POST["dname"]."','".$_POST["ddesc"]."','".$_POST["dimg"]."','".$_POST["dstatus"]."','".$_POST[dt_reg]."')";
+		$sql = "INSERT INTO devices values (NULL,'".mysqli_real_escape_string($db,$_POST["dname"])."','".mysqli_real_escape_string($db,$_POST["ddesc"])."','".mysqli_real_escape_string($db,$_POST["dimg"])."','".mysqli_real_escape_string($db,$_POST["dstatus"])."','".mysqli_real_escape_string($db,$_POST[dt_reg])."')";
       		if (mysqli_query($db, $sql)) {
     		header("location: ./devices.php");
 		} else {

@@ -8,7 +8,7 @@ if (!$db) {
 		
 	}
 	else {
-		$sql = "INSERT INTO users values (NULL,'".$_POST["username"]."','".$_POST["password"]."','".$_POST["name"]."','".$_POST["type"]."','".$_POST["idgroup"]."')";
+		$sql = "INSERT INTO users values (NULL,'".mysqli_real_escape_string($db,$_POST["username"])."','".mysqli_real_escape_string($db,$_POST["password"])."','".mysqli_real_escape_string($db,$_POST["name"])."','".mysqli_real_escape_string($db,$_POST["type"])."','".mysqli_real_escape_string($db,$_POST["idgroup"])."')";
       		if (mysqli_query($db, $sql)) {
     		header("location: ./users.php");
 		} else {

@@ -7,7 +7,7 @@ if (!$db) {
 		
 	}
 	else {
-		$waspid=$_GET['waspid'];
+		$waspid=mysqli_real_escape_string($db,$_GET['waspid']);
 		$sql = "INSERT INTO devices (iddevices,name) values (NULL,'$waspid')";
 		$result = mysqli_query($db,$sql);
     		echo $waspid;
