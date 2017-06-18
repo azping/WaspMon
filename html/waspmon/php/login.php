@@ -1,8 +1,5 @@
 <?php
-   $DB_SERVER="localhost";
-   $DB_USERNAME="waspmon";
-   $DB_PASSWORD="waspmon";
-   $DB_DATABASE="waspmon";
+include("config.php");
 
 
 $db = mysqli_connect($DB_SERVER,$DB_USERNAME,$DB_PASSWORD,$DB_DATABASE);

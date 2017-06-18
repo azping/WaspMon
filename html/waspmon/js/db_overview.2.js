@@ -2,7 +2,7 @@ window.onload = function () {
 var nVal=0;
 
 	//Get number of wasps from database
-	$.get('./php/db_wmany.php', function (nVal) {
+	$.get('../php/db_wmany.php', function (nVal) {
 
 					var ginitval=0;
 					
@@ -25,9 +25,9 @@ var nVal=0;
 		for (let n=1;n<=nVal; n++) {
 			//Get wasp names - let wait for get
 			
-			$.get('./php/db_wdetails.php', { iVal:n } ,function (waspid) {
+			$.get('../php/db_wdetails.php', { iVal:n } ,function (waspid) {
 				//Get battery status;
-				$.get('./php/db_bat.php', {wasp_id: waspid}, function (newValue) {  
+				$.get('../php/db_bat.php', {wasp_id: waspid}, function (newValue) {  
 					g[n-1] = new JustGage({
 							//n is always 3?
 							id: "g"+n,
@@ -36,7 +36,7 @@ var nVal=0;
 							max: 100,
 							symbol: '%',
 							title: waspid,
-							label: "last seen:\n 2 days",
+							label: "last seen: \n"+newValue.lastdate+" day(s) ago.",
 							pointer: true,
 							pointerOptions: {
 							toplength: -15,
@@ -53,8 +53,8 @@ var nVal=0;
 							counter: true,
 							//donut: true
 							});
-					g[n-1].refresh(newValue);
-				});
+					g[n-1].refresh(newValue.batlevel);
+				} , "json" );
 					
 			});			
 		}	

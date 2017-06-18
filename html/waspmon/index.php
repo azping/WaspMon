@@ -1,21 +1,22 @@
 <?php
 //include('php/login.php'); // Include Login Script
-//include('php/config.php');
+include("./php/config.php");
 session_start();
+$error="";
 if ((isset($_SESSION['username']) != '')) 
 {
-header('Location: dashboard.php');
+header('Location: ./php/dashboard.php');
 }
 if(!empty($_POST["username"]) || !empty($_POST["password"])) {
 
-   $DB_SERVER="localhost";
+   //$DB_SERVER="localhost";
 // TODO Merge users with mysql
 //   $DB_USERNAME=$_POST['username'];
 //   $DB_PASSWORD=$_POST['password'];
-   $DB_USERNAME="waspmon";
-   $DB_PASSWORD="waspmon";
-   $DB_DATABASE="waspmon";
-   $error="";
+  // $DB_USERNAME="waspmon";
+   //$DB_PASSWORD="waspmon";
+   //$DB_DATABASE="waspmon";
+   
 
 $db = mysqli_connect($DB_SERVER,$DB_USERNAME,$DB_PASSWORD,$DB_DATABASE);
 if (!$db) {
@@ -32,10 +33,10 @@ if (!$db) {
       		$username = mysqli_real_escape_string($db,$_POST['username']);
       		$password = mysqli_real_escape_string($db,$_POST['password']); 
       
-      		$sql = "SELECT idusers,name,type FROM users WHERE username = '$username' and password = '$password'";
+      		$sql = "SELECT idusers,name,type,idgroup FROM users WHERE username = '$username' and password = '$password'";
       		$result = mysqli_query($db,$sql);
       		$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      		$active = $row['active'];
+      		//$active = $row['active'];
       
       		$count = mysqli_num_rows($result);
       
@@ -47,7 +48,9 @@ if (!$db) {
 			$_SESSION['password'] = $password;
 			$_SESSION['name'] = $row['name'];
 			$_SESSION['type'] = $row['type'];
-         		header("location: dashboard.php");
+			$_SESSION['idusers'] = $row['idusers'];
+			$_SESSION['idgroup'] = $row['idgroup'];
+         		header("location: ./php/dashboard.php");
       			}else {
          		$error = "Your Login Name or Password is invalid";
 			}
@@ -131,40 +134,67 @@ if (!$db) {
         </div>
       </div>
     </nav>
-
 <br /><br />
-	<div class="container">
+
+	<div class="row">
     
 
-    <div class="l_login">
-    	<h3 class="l_authTitle">Sign in</h3>
+	
+    	
 
 
-		<div class="row l_row-sm-offset-3">
-			<div class="col-xs-12 col-sm-6">	
-			    <form class="l_loginForm" action="" autocomplete="off" method="POST">
+
+			
+
+			<div class="col-xs-0 col-sm-1 col-md-2">
+			
+			</div>
+			<div class="col-xs-0 col-sm-5 col-md-4">
+			<center>
+			<img src="./images/waspmote2.png" alt="Waspmote" class="img-responsive">
+			<h4>Web application for processing, logging and visualising  sensor data and house energy consumption</h4>
+			<img src="./images/waspsensor.jpg" alt="Waspmote" class="img-responsive" style="float: left; width: 55%; margin-right: 1%; margin-bottom: 0.5em;">
+			<img src="./images/threephase-37cm.jpg" alt="Waspmote" class="img-responsive"  style="float: left; width: 43%; margin-right: 1%; margin-bottom: 0.5em;">
+			<p style="clear: both;">
+			</center>
+			</div>
+			<div class="col-xs-0 col-sm-1 col-md-1">
+			
+			</div>
+			<div class="col-xs-0 col-sm-4 col-md-3">
+			<div class="l_login">
+			<br /><br /><br />
+			<h3 class="l_authTitle">Waspmon login:</h3><br />	
+			    	<form class="l_loginForm" action="" autocomplete="off" method="POST">
 					<div class="input-group">
 						<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 						<input type="text" class="form-control" name="username" placeholder="Username">
 					</div>
-					<span class="help-block"></span>
+					<span class="help-block"></span><br />
 										
 					<div class="input-group">
 						<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 						<input  type="password" class="form-control" name="password" placeholder="Password">
 					</div>
-                    <span class="help-block"><p><?php echo $error;?></p></span>
-
+                    			<span class="help-block"><p><?php echo $error;?></p></span><br />
 					<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-				</form>
+				</form>	
 			</div>
-    	</div>
-		
-	</div>
+			</div>
+			<div class="col-xs-0 col-sm-1 col-md-2">
+			<br /><br /><br /><br /><br />
+			</div>
+</div>
+	<div id="footer">
+            <div class="navbar navbar-inverse navbar-fixed-bottom">
+    <center><p><img src="./images/GitHub-Mark-Light-64px.png" alt="GitHub" height="30" width="30">&nbsp;&nbsp;<a href="https://github.com/azping/WaspMon" target="_blank" style="color:white;">GitHub Project</a></p></center>
+        </div>	
+</div>
 
 
+	
 
-    </div>
+
 	
     <!-- Bootstrap core JavaScript
     ================================================== -->

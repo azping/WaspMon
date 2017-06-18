@@ -68,7 +68,7 @@ header("location: ../index.php");
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-        	<li><a href="../dashboard.php">Dashboard</a></li>
+        	<li><a href="../php/dashboard.php">Dashboard</a></li>
 		<?php
 		if($_SESSION['type']!='User'){?>
 		<li class="dropdown">
@@ -163,6 +163,10 @@ header("location: ../index.php");
 							<input id="name" type="text" class="form-control" name="name" placeholder="Name" required>
 						</div><p></p>
 						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							<input id="idgroup" type="text" class="form-control" name="idgroup" placeholder="Grupo">
+						</div><p></p>
+						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-tag"></i></span>
 							<select class="form-control" id="type" name="type">
 								<option value="Administrator">Admin</option>
@@ -215,7 +219,11 @@ header("location: ../index.php");
 								<option value="Maintainer">Maintainer</option>
 								<option value="User">User</option>
 							</select>
-						</div>
+						</div><p></p>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							<input id="idgroupm" type="text" class="form-control" name="idgroupm" placeholder="Grupo">
+						</div><p></p>
 						
 						<div class="modal-footer">
 						<button id="uokm" type="submit" class="btn btn-default" name="uokm"></button>
@@ -234,10 +242,12 @@ header("location: ../index.php");
 
 		<table id="users" class="table table-striped table-bordered" cellspacing="0" width="100%">
 		<thead>
-              	<tr>	<th id="id" hidden></th>
+              	<tr>
+			<th id="id" hidden></th>
 			<th id="Username">Username</th>
                 	<th id="Name">Name</th>
                 	<th id="Type">Type</th>
+			<th id="id">Group</th>
 			<th id="Action">Action</th>
                 </tr>
 		</thead>
@@ -247,6 +257,7 @@ header("location: ../index.php");
 			<th>Username</th>
                 	<th>Name</th>
                 	<th>Type</th>
+			<th id="id">Group</th>
 			<th id="Action">Action</th>
                 </tr>
               </tfoot>

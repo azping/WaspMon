@@ -50,12 +50,14 @@ var table = $('#users').DataTable();
 		$('#usernamem').val(data[1]);
 		$('#namem').val(data[2]);
 		$('#typem').val(data[3]);
+		$('#idgroupm').val(data[4]);
 		document.getElementById("uokm").innerHTML = "Update";
 		$('#idusersm').attr('readonly',false);
 		$('#usernamem').attr('readonly',false);
 		$('#passwordm').attr('readonly',false);
 		$('#namem').attr('readonly',false);
 		$('#typem').attr('readonly',false);
+		$('#idgroupm').attr('readonly',false);
 	}
 	if (button_id=='b2'){
 		//alert( data[0] +"'s role is: "+ data[3] );
@@ -68,12 +70,14 @@ var table = $('#users').DataTable();
 		$('#usernamem').val(data[1]);
 		$('#namem').val(data[2]);
 		$('#typem').val(data[3]);
+		$('#idgroupm').val(data[4]);
 		document.getElementById("uokm").innerHTML = "Delete";
 		$('#idusersm').attr('readonly',true);
 		$('#usernamem').attr('readonly',true);
 		$('#passwordm').attr('readonly',true);
 		$('#namem').attr('readonly',true);
 		$('#typem').attr('readonly',true);
+		$('#idgroupm').attr('readonly',true);
 	}
 	} );
 

@@ -3,11 +3,6 @@ session_start();
 if(!isset($_SESSION['username'])){
 header("location: ../index.php");
 }
-
-if($_SESSION['type']=="Administrator"){
-header("location: devices2.php");
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -147,22 +142,94 @@ header("location: devices2.php");
 			
 			</div>-->
 
-<div class="modal fade" id="groupD" role="dialog">
-    			<div class="modal-dialog">
+			<div id="createD" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+
+			<!-- Modal content: Create Device-->
 			<div class="modal-content">
-					<div id="gdheader" class="modal-header alert-info" style="padding:35px 50px;  color:black !important; text-align: center; font-size: 30px;">
+					<div class="modal-header alert-info" style="padding:35px 50px; color:black !important; text-align: center; font-size: 30px;">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h2>Device group to maintain</h2>
+						<h2><span class="glyphicon glyphicon-cog"></span> New device</h2>
 					</div>
 					<div class="modal-body">
-					<form class="form-horizontal" action="./devices2.php" method="POST">
+
+					<form class="form-horizontal" action="./dbadev.php" method="POST">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
-							<input id="groupdid" type="text" class="form-control" name="groupdid" placeholder="Insert group" required>
+							<input id="dname" type="text" class="form-control" name="dname" placeholder="Device name" required>
 						</div><p></p>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-comment"></i></span>
+							<input id="ddesc" type="text" class="form-control" name="ddesc" placeholder="Description">
+						</div><p></p>
+						<!-- TODO Image on file or in DB -->
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+							<input id="dimg" type="text" class="form-control" name="dimg" placeholder="Image NOT Implemented">
+						</div><p></p>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-off"></i></span>
+							<select class="form-control" id="dstatus" name="dstatus">
+								<option value="On" selected="selected">On</option>
+								<option value="Off">Off</option>
+							</select>
+						</div><p></p>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-tag"></i></span>
+							<input type="text" class="form-control" id="dt_reg" name="dt_reg">
+						</div>
+						<div class="modal-footer">
+						 <button type="submit" class="btn btn-default">Submit</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+						</div>
+					</form>
+					</div>
+
+			</div>
+			</div>	
+			</div>		
+			
+<!-- Modal: Modify device-->
+			<div class="modal fade" id="modifyD" role="dialog">
+    			<div class="modal-dialog">
+			<div class="modal-content">
+					<div id="devheaderm" class="modal-header" style="padding:35px 50px;  background-color: orange; color:white !important; text-align: center; font-size: 30px;">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h2 id="delheader"></h2>
+					</div>
+					<div class="modal-body">
+					<form class="form-horizontal" action="./dbmdev.php" method="POST">
+						<div class="input-group">
+							<input type="hidden" id="opdevm" type="text" class="form-control" name="opdevm" />
+							<input type="hidden" id="iddevm" type="text" class="form-control" name="iddevm" />
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+							<input id="dnamem" type="text" class="form-control" name="dnamem" placeholder="Device name" required>
+						</div><p></p>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-comment"></i></span>
+							<input id="ddescm" type="text" class="form-control" name="ddescm" placeholder="Description">
+						</div><p></p>
+						<!-- TODO Image on file or in DB -->
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+							<input id="dimgm" type="text" class="form-control" name="dimgm" placeholder="Image NOT Implemented">
+						</div><p></p>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-off"></i></span>
+							<select class="form-control" id="dstatusm" name="dstatusm">
+								<option value="On" selected="selected">On</option>
+								<option value="Off">Off</option>
+							</select>
+						</div><p></p>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-tag"></i></span>
+							<input type="text" class="form-control" id="dt_regm" name="dt_regm">
+						</div>
 						
 						<div class="modal-footer">
-						<button id="gdok" type="submit" class="btn btn-default" name="gdok">OK</button>
+						<button id="dokm" type="submit" class="btn btn-default" name="dokm"></button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 						</div>
 					</form>
@@ -171,6 +238,45 @@ header("location: devices2.php");
 			</div>
 			</div>
 			</div>
+
+<!-- Modal: Scan Device-->
+			<div id="scanD" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header alert-info" style="padding:35px 50px; color:black !important; text-align: center; font-size: 30px;">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h2><span class="glyphicon glyphicon-search"></span> Scan for devices</h2>
+					</div>
+					<p> </p>
+					<label>Total Wasps</label>
+					<div class="form-group">
+						<label for="sfw">Found:</label>
+						<input id="sfw" type="text" class="form-control" name="sfw" placeholder="Number of Wasps found">
+					</div><p></p>
+					<div class="form-group">
+						<label for="skw">Known:</label>
+						<input id="skw" type="text" class="form-control" name="skw" placeholder="Number of Wasps known">
+					</div><p></p>
+					<div class="form-group">
+						<label for="snw">New:</label>
+						<input id="snw" type="text" class="form-control" name="snw" placeholder="New Wasps discovered">
+					</div><p></p>
+
+					<div class="form-group">
+						<ul class="list-group" id="slist"></ul>
+					<p></p>
+					</div>
+					<div class="progress">
+						<div id="sprobar" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+					</div>
+					<div id="scomp" class="alert alert-success" role="alert" style="display:none;">Scanning complete!</div>
+					<div class="modal-footer">
+						<button id="sok" type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+					</div>
+				</div>
+			</div>	
+			</div>		
+
 
 
 <div class="col-xs-12 col-sm-12 col-md-12 placeholder">
@@ -187,6 +293,62 @@ header("location: devices2.php");
 			<th>Action</th>
                 </tr>
 		</thead>
+		<tbody>
+		<?php
+		include("config.php");
+		$error="";
+
+		$db = mysqli_connect($DB_SERVER,$DB_USERNAME,$DB_PASSWORD,$DB_DATABASE);
+		if (!$db) {
+		
+		} else {
+			if($_SESSION['type']=='Administrator'){
+				$sql = "SELECT iddevices,name,description,image,status,t_reg from devices";
+				$result = mysqli_query($db,$sql);
+				if (mysqli_num_rows($result) > 0) {
+					    // output data of each row
+						while( $row = mysqli_fetch_assoc($result)) {
+						echo "<tr><td hidden>".$row["iddevices"]."</td><td>".$row["name"]."</td><td>".$row["description"]."</td><td align=center><img height=\"42\"width=\"42\" src=\"../images/img1.png\"></td><td align=center>".$row["status"]."</td><td align=center>".$row["t_reg"]."</td><td align=center></td></tr>";
+						}
+				} else {
+						if($_SESSION['type']=='Administrator'){
+							echo '<div class="alert alert-warning alert-dismissable fade in">';
+							echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+							echo '<strong>No devices found!</strong> Try scanning for new devices.</div>';
+						} else {
+							echo '<div class="alert alert-warning alert-dismissable fade in">';
+							echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+							echo '<strong>Not a group member!</strong> Contact your administrator.</div>';
+						}
+				}
+
+
+			} else {
+				$sql1="SELECT users.idusers from users INNER JOIN devices on users.idgroup=devices.t_reg where t_reg=".$_POST['groupdid']." AND idgroup=".$_SESSION['idgroup'];
+				$result1 = mysqli_query($db,$sql1);
+	      			if (mysqli_num_rows($result1) == 0) {
+					echo '<div class="alert alert-warning alert-dismissable fade in">';
+					echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+					echo '<strong>Not a group member!</strong> Contact your administrator.</div>';
+				} else {
+					$sql2 = "SELECT iddevices,name,description,image,status,t_reg from devices where t_reg=".$_POST['groupdid'];
+		      			$result2 = mysqli_query($db,$sql2);
+		      				if (mysqli_num_rows($result2) > 0) {
+						// output data of each row
+							while( $row = mysqli_fetch_assoc($result2)) {
+							echo "<tr><td hidden>".$row["iddevices"]."</td><td>".$row["name"]."</td><td>".$row["description"]."</td><td align=center><img height=\"42\"width=\"42\" src=\"../images/img1.png\"></td><td align=center>".$row["status"]."</td><td align=center>".$row["t_reg"]."</td><td align=center></td></tr>";
+							}
+						} else {
+							echo '<div class="alert alert-warning alert-dismissable fade in">';
+							echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+							echo '<strong>No devices found!</strong> Contact your administrator.</div>';
+						}
+					}    
+			}
+		}
+		mysqli_close($db);
+		?>
+		</tbody>
 		<tfoot>
               	<tr>
 			<th id="id" hidden></th>

@@ -1,7 +1,7 @@
 <?php
-   define('DB_SERVER', 'localhost');
-   define('DB_USERNAME', 'waspmon');
-   define('DB_PASSWORD', 'waspmon');
-   define('DB_DATABASE', 'waspmon');
-   $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
+    $DB_SERVER="localhost";
+   $DB_USERNAME="waspmon";
+//User password needs to be in session sha256
+   $DB_PASSWORD="waspmon";
+   $DB_DATABASE="waspmon";
 ?>

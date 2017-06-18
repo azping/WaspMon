@@ -1,9 +1,12 @@
 window.onload = function () {
 //	$(document).ready(function() {
 //		$('#users').DataTable();
-//	
+//
 
 var table = $('#devices').DataTable( {
+	//"processing": true,
+        //"serverSide": true,
+        //"ajax": "../php/db_wdevices.php",
         //"ajax": "data/arrays.txt",
         "columnDefs": [ {
             "targets": -1,
@@ -13,7 +16,7 @@ var table = $('#devices').DataTable( {
     } );
 
 
-var table = $('#devices').DataTable();
+//var table = $('#devices').DataTable();
 
  /* On table row active (or selected if !bootstrap) enable buttons 
     $('#users tbody').on( 'click', 'tr', function () {
@@ -175,4 +178,5 @@ var nwVal=0;
 
 } );
 
+$('#groupD').modal('show');
 }

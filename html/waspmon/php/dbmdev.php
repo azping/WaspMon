@@ -1,11 +1,5 @@
 <?php
-//include('php/config.php');
-//session_start();
-   $DB_SERVER="localhost";
-   $DB_USERNAME="waspmon";
-//User e Password needs to be in session sha256
-   $DB_PASSWORD="waspmon";
-   $DB_DATABASE="waspmon";
+include("config.php");
    $error="";
 //TODO Confirmation password
 $db = mysqli_connect($DB_SERVER,$DB_USERNAME,$DB_PASSWORD,$DB_DATABASE);
@@ -20,7 +14,7 @@ if (!$db) {
 		$dstatusm=($_POST['dstatusm']);
 		$dt_regm=($_POST['dt_regm']);
 		if ($_POST["opdevm"]=="Update") {
-			$sql = "UPDATE devices SET name='$dnamem', description='$ddescm', image='$dimgm', status='$dstatusm', t_reg='$dt_regm' where iddevices='$iddevm'";
+			$sql = "UPDATE devices SET name='$dnamem', description='$ddescm', image='$dimgm', status='$dstatusm', t_reg=$dt_regm where iddevices='$iddevm'";
 		} else {
 		if ($_POST["opdevm"]=="Delete") {
 			$sql = "DELETE FROM devices where iddevices='$iddevm'";
